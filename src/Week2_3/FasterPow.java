@@ -1,7 +1,4 @@
-package Week2;
-
-import java.io.FilterOutputStream;
-import java.util.Scanner;
+package Week2_3;
 
 public class FasterPow {
     /**

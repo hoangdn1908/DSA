@@ -1,6 +1,5 @@
-package Week2;
+package Week2_3;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 
