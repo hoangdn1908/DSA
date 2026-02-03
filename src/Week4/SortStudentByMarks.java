@@ -7,8 +7,7 @@ public class SortStudentByMarks {
      * Constructor for objects of class Exercise02
      */
     public SortStudentByMarks() {
-        /// The ngu
-    }
+        }
 
     public static void printStudentList(String[] names, int[] marks) {
         int n = marks.length;
