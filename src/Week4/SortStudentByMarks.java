@@ -24,24 +24,24 @@ public class SortStudentByMarks {
      */
     //Quest2
     public static void sortStudentByMark(String[] names, int[] marks) {
-       for(int i = 0; i < marks.length - 1; i++)
-       {
-           boolean isSwapped = false;
-           for(int j = 0; j < marks.length - i - 1; j++)
-           {
-               if(marks[j] < marks[j + 1])
-               {
-                   int temp = marks[j];
-                   marks[j] = marks[j + 1];
-                   marks[j + 1] = temp;
-                   String tempName = names[j];
-                   names[j] = names[j + 1];
-                   names[j + 1] = tempName;
-                   isSwapped = true;
-               }
-           }
-           if(!isSwapped) break;
-       }
+        boolean isSwapped;
+        do
+        {
+            isSwapped = false;
+            for(int i = 0 ; i < marks.length - 1; i++)
+            {
+                if(marks[i] < marks[i + 1])
+                {
+                    int temp = marks[i];
+                    marks[i] = marks[i + 1];
+                    marks[i + 1] = temp;
+                    String tempName = names[i];
+                    names[i] = names[i + 1];
+                    names[i + 1] = tempName;
+                    isSwapped = true;
+                }
+            }
+        }while (isSwapped);
     }
 
     /**
