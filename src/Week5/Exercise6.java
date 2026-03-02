@@ -70,18 +70,16 @@ public class Exercise6 {
         int m = 5;
         String[] a = new String[] {"apple","grape","melon","Mango","Olive","Onion","peach"};
 
-        System.out.println("The list of strings is: ");
-        printList(a);
-        sortStringList(a, m);
-        System.out.println("The list of sorted strings is: ");
-        printList(a);
+//        System.out.println("The list of strings is: ");
+//        printList(a);
+//        sortStringList(a, m);
+//        System.out.println("The list of sorted strings is: ");
+//        printList(a);
 
-/*
-    a = new String[] {"apple","grape","melon","Mango","Olive","Onion","peach"};
-    System.out.println("columnSort(a,4):");
-    columSort(a,4);
-    printList(a);
-*/
+        a = new String[] {"apple","grape","melon","Mango","Olive","Onion","peach"};
+        System.out.println("columnSort(a,4):");
+        columSort(a,2);
+        printList(a);
 
     }
 }
