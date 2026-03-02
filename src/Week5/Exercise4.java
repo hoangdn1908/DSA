@@ -1,5 +1,7 @@
 package Week5;
 
+import java.util.Arrays;
+import java.util.OptionalInt;
 import java.util.Scanner;
 
 public class Exercise4 {
@@ -28,23 +30,40 @@ public class Exercise4 {
         int[] count = new int[11];
         String[] output_names = new String[n];
         int[] output_marks = new int[n];
-
         // QUESTION 4
         // Write java code to: Initialize count array with all zeros;
+//       for(int i = 0; i < count.length; i++)
+//       {
+//           count[i] = 0;
+//       }
         // Store the count of each element;
+        for(int mark : marks)
+        {
+            count[mark]++;
+        }
         // Calculate the cumulative count of each array
-
-
-
+        for(int i = 9; i >= 0; i--)
+        {
+            count[i] += count[i + 1];
+        }
         // End of QUESTION 4
-
         // QUESTION 5
         // Write java code to find the index of each element of the original array in count array,
-        // place the elements in output array;
+        for(int i = n - 1; i >= 0; i--)
+        {
+            int mark = marks[i];
+            int position = count[mark] - 1;
+            // place the elements in output array;
+            output_marks[position] = mark;
+            output_names[position] = names[i];
+            count[mark]--;
+        }
         // Copy the sorted elements into original array
-
-
-
+        for(int i = 0; i < n; i++)
+        {
+            marks[i] = output_marks[i];
+            names[i] = output_names[i];
+        }
         // End of QUESTION 5
     }
 

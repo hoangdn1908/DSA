@@ -28,23 +28,41 @@ public class Exercise5 {
      */
     public static int compareTwoString(String s1, String s2) {
         int result = 0;
-
         // QUESTION 6
         // Write java code to complete this method
-
-
-        // End of QUESTION 6
-
+        for(int i = 0; i < s1.length(); i++)
+        {
+            if(s1.charAt(i) < s2.charAt(i))
+            {
+                result = -1;
+                return result;
+            }
+            else if(s1.charAt(i) > s2.charAt(i))
+            {
+                result = 1;
+                return result;
+            }
+        }
         return result;
     }
     /**
      * This method uses optimized Bubble sort to sort the list of n strings in lexicographical order
      */
     public static void sortStringList(String[] a) {
-
         // QUESTION 7
         // Write java code to complete this method
-
+        for(int i = 0; i < a.length - 1; i++)
+        {
+            for(int j = 0; j < a.length - i - 1; j++)
+            {
+                if(compareTwoString(a[j], a[j + 1]) == 1)
+                {
+                    String temp = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = temp;
+                }
+            }
+        }
         // End of QUESTION 7
     }
 

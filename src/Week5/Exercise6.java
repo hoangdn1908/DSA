@@ -35,20 +35,34 @@ public class Exercise6 {
         int n = a.length;
         int[] count = new int[256];
         String[] output = new String[n];
-
         // QUESTION 8
         // Write java code to complete this method
-
-
+        for(String word : a)
+        {
+            count[word.charAt(d)]++;
+        }
+        for(int i = 1; i < count.length; i++)
+        {
+            count[i] += count[i - 1];
+        }
+        for(int i = n - 1; i >= 0; i--)
+        {
+            int c = a[i].charAt(d);
+            int index = count[c] - 1;
+            output[index] = a[i];
+            count[c]--;
+        }
+        System.arraycopy(output, 0, a, 0, n);
         // End of QUESTION 8
     }
 
     public static void sortStringList(String[] a, int m) {
-
         // QUESTION 9
         // Write java code to complete this method
-
-
+        for(int i = m - 1; i >= 0; i--)
+        {
+            columSort(a, i);
+        }
         // End of QUESTION 9
     }
 
