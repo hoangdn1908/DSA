@@ -25,7 +25,8 @@ public class Exercise4 {
     public static void sortStudentByMark(String[] names, int[] marks) {
 
         int n = marks.length;
-        int[] count = new int[11];
+        int max = max(marks);
+        int[] count = new int[max + 1];
         String[] output_names = new String[n];
         int[] output_marks = new int[n];
         // QUESTION 4
@@ -40,7 +41,7 @@ public class Exercise4 {
             count[mark]++;
         }
         // Calculate the cumulative count of each array
-        for(int i = count.length - 2; i >= 0; i--)
+        for(int i = max - 1; i >= 0; i--)
         {
             count[i] += count[i + 1];
         }
@@ -61,6 +62,16 @@ public class Exercise4 {
         System.arraycopy(output_marks, 0, marks, 0, n);
         System.arraycopy(output_names, 0, names, 0, n);
         // End of QUESTION 5
+    }
+
+    public static int max(int[] arr)
+    {
+        int max = 0;
+        for(int num : arr)
+        {
+            if(num > max) max = num;
+        }
+        return max;
     }
 
     /**
