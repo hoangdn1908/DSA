@@ -8,7 +8,6 @@ public class PolyApp {
     }
 
     public static void main(String[]args) {
-/*
     PolyList p1 = new PolyList();
     PolyList p2 = new PolyList();
     p1.addTerm(3,3);
@@ -26,8 +25,7 @@ public class PolyApp {
     p2.addTerm(1,0);
     System.out.println(p2.toString());
 
-    p1.subtract(p2);
-    System.out.println(p1.toString());
-*/
+//    p1.subtract(p2);
+//    System.out.println(p1.toString());
     }
 }

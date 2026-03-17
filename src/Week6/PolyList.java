@@ -54,6 +54,30 @@ public class PolyList {
         {
             PolyNode newNode = new PolyNode(coef, exp);
             PolyNode cur = head;
+            PolyNode prev = null;
+            if(isEmpty())
+            {
+                head = newNode;
+            }
+            else
+            {
+                if(cur.getExp() < newNode.getExp())
+                {
+                    newNode.setNext(cur);
+                    head = newNode;
+                }
+                else
+                {
+                    while (cur != null && cur.getExp() > newNode.getExp())
+                    {
+                        prev = cur;
+                        cur = cur.getNext();
+                    }
+                    newNode.setNext(cur);
+                    if(prev != null) prev.setNext(newNode);
+                }
+            }
+            length++;
         }
 
         // End of the method
@@ -67,7 +91,12 @@ public class PolyList {
     public void add(PolyList p) {
         // QUESTION 6
         // Write java code to implement this method
-
+        PolyNode node = p.head;
+        while (node != null)
+        {
+            addTerm(node.getCoef(), node.getExp());
+            node = node.getNext();
+        }
 
         // End of the method
     }
@@ -75,16 +104,18 @@ public class PolyList {
     public void subtract(PolyList p) {
         // QUESTION 7
         // Write java code to implement this method
-
-
+        PolyNode node = p.head;
+        while (node != null)
+        {
+            addTerm(-node.getCoef(), node.getExp());
+            node = node.getNext();
+        }
         // End of the method
     }
 
-/*
   public String toString() {
     if (isEmpty())
       return "[]";
-
     PolyNode current = head;
     String outTxt="[" + current.toString();
     for (int i=1; i<length; i++) {
@@ -97,5 +128,4 @@ public class PolyList {
     outTxt+="]";
     return outTxt;
   }
-*/
 }
