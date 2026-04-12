@@ -1,84 +1,87 @@
 /**
- * Class InfixToPostfix implements an algorithm to convert an infix expression to a postfix expression.
- * Please refer to Topic 06 for the algorithm in detail. 
- * 
- * @author (nxthang) 
- * @version (1.0)
+ * Chuyển biểu thức trung tố (infix) sang hậu tố (postfix).
  */
 
 package Week8;
 
+// Lớp InfixToPostfix dùng để chuyển biểu thức trung tố sang hậu tố
 class InfixToPostfix {
+  // Biểu thức trung tố đầu vào
   String infix;
 
-  /**
-   * Constructor for objects of class InfixToPostfix.
-   */
   public InfixToPostfix(String infix) {
+    // Lưu lại biểu thức trung tố
     this.infix = infix;
   }
 
+  // Hàm chuyển infix -> postfix
   public String convertToPostfix() {
-    // The result string
+    // Kết quả hậu tố
     String postfix = "";
-
-    // Initialize an ArrayStack of character items
+    // Stack lưu toán tử và dấu ngoặc
     ArrayStack<Character> st = new ArrayStack<Character>();
 
-    // Construct a for loop to process the infix from left to right
+    // Duyệt từng ký tự trong chuỗi infix
     for (int i = 0; i < infix.length(); i++) {
-      // Get a symbol c from infix
       char c = infix.charAt(i);
 
-      // QUESTION 1
-      // Write java code to implement this step of the algorithm
+      // ===== TOÁN HẠNG & '(' =====
 
-      if (('0' <= c) && (c <= '9')) { // if c is an operand
-        // QUESTION 1 p1
-        // Write java code to implement this step
-
-        // End of QUESTION 1 p1
-
-      }
-      if (c == '(') { // if c is a left parentheses
-        // QUESTION 1 p2
-        // Write java code to implement this step
-
-        // End of QUESTION 1 p1
+      // Nếu là chữ số -> toán hạng
+      if (('0' <= c) && (c <= '9')) {
+        // Đưa thẳng vào postfix + khoảng trắng
+        postfix = postfix + c + " ";
       }
 
-      // End of QUESTION 1
-
-      if ((c == '+') || (c == '-') || (c == '*') || (c == '/')) { // if c is an operator
-
-        // QUESTION 2
-        // Write java code to implement this step of the algorithm
-
-        // End of QUESTION 2
+      // Nếu là '('
+      if (c == '(') {
+        // Đẩy vào stack để đánh dấu phạm vi ưu tiên
+        st.push(c);
       }
-      if (c == ')') { // if c is a right parentheses
-        // QUESTION 3
-        // Write java code to implement this step of the algorithm
 
-        // End of QUESTION 3
+      // ===== TOÁN TỬ + - * / =====
+
+      if ((c == '+') || (c == '-') || (c == '*') || (c == '/')) {
+        // Pop các toán tử trong stack có ưu tiên >= c (trừ '(')
+        while (!st.isEmpty() && st.peek() != '(' && priority(st.peek()) >= priority(c)) {
+          postfix = postfix + st.pop() + " ";
+        }
+        // Sau đó push toán tử hiện tại vào stack
+        st.push(c);
+      }
+
+      // ===== DẤU NGOẶC PHẢI ')' =====
+
+      if (c == ')') {
+        // Pop toán tử cho đến khi gặp '('
+        while (!st.isEmpty() && st.peek() != '(') {
+          postfix = postfix + st.pop() + " ";
+        }
+        // Bỏ dấu '(' khỏi stack
+        if (!st.isEmpty() && st.peek() == '(') {
+          st.pop();
+        }
       }
     }
-    // When we finish processing the infix, we pop all the operators from the stack
+
+    // Sau khi duyệt hết chuỗi:
+    // Pop nốt các toán tử còn lại trong stack
     while (!st.isEmpty()) {
       postfix = postfix + st.pop() + " ";
     }
+
+    // Trả về chuỗi hậu tố
     return postfix;
   }
 
-  // An utility function to return precedence of a given operator
-  // Higher returned value means higher precedence
+  // Trả về độ ưu tiên của toán tử (số lớn hơn -> ưu tiên cao hơn)
   private static int priority(char c) {
     if (c == '(')
-      return 1;
+      return 1;      // thấp nhất, chỉ làm mốc
     if ((c == '+') || (c == '-'))
-      return 2;
+      return 2;      // cộng, trừ
     if ((c == '*') || (c == '/'))
-      return 3;
-    return 0;
+      return 3;      // nhân, chia
+    return 0;        // ký tự khác
   }
 }
