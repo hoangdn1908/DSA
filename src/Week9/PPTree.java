@@ -137,9 +137,11 @@ public class PPTree<T> {
     int degree = 0;
     // QUESTION 2
     // Write java code to implement this method
- 
-    // End of the method     
-
+    for(int i = 0; i < this.length; i++)
+    {
+      if(getParent(i) == nodeIndex) degree++;
+    }
+    // End of the method
     return degree;
   }
 
@@ -148,26 +150,29 @@ public class PPTree<T> {
   // the node which has no children.
   public boolean isLeaf(int nodeIndex) {
     boolean leaf = true;
-
     // QUESTION 3
     // Write java code to implement this method
-    
-
-    // End of the method     
-    
+    for(int i = nodeIndex + 1; i < this.length; i++)
+    {
+     if(getParent(i) == nodeIndex) {
+       leaf = false;
+       break;
+     }
+    }
+    // End of the method
     return leaf;
   }
 
   // Returns the total number of leaves in the tree
   public int countLeaves() {
     int count = 0;
-
     // QUESTION 4
     // Write java code to implement this method
-
-
+    for(int i = 0; i < this.length; i++)
+    {
+      if(isLeaf(i)) count++;
+    }
     // End of the method
-    
     return count;
   }
 
@@ -175,13 +180,14 @@ public class PPTree<T> {
   // is the distance from this node to the root of the tree.
   public int getLevel(int nodeIndex) {
     int level = 0;
-
     // QUESTION 5
     // Write java code to implement this method
-
-    
+    while(getParent(nodeIndex) != -1)
+    {
+      nodeIndex = getParent(nodeIndex);
+      level++;
+    }
     // End of the method
-    
     return level;
   }
 
@@ -189,26 +195,28 @@ public class PPTree<T> {
   // of the tree.
   public int getDepth() {
     int depth = 0;
-
     // QUESTION 6
     // Write java code to implement this method
-
-    
-    // End of the method    
-
+    for(int i = 0; i < this.length;i++)
+    {
+       int level = getLevel(i);
+       if(level > depth) depth = level;
+    }
+    // End of the method
     return depth;
   }
 
   // Returns the position (index) of the first node which has data as the nodeData value. 
   // The method will return -1 if the node is not found.
   public int search(T nodeData) {
-
     // QUESTION 7
     // Write java code to implement this method
-
-    
+    if(nodeData == null) return -1;
+    for(int i = 0; i < this.length;  i++)
+    {
+      if(nodeData.equals(getNodeData(i))) return i;
+    }
     // End of the method
-    
     return -1;
   }
 }
