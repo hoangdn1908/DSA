@@ -18,10 +18,22 @@ public class ArrayBTreeApp {
   
   public static void main(String[] args) {
     ArrayBTree<String> BT = new ArrayBTree<String>();
-
     // QUESTION 8
     // Write java code to create a Binary Tree BT
-
+    BT.addRoot("A");           // index 0
+    BT.addLeftChild("B", 0);   // index 1
+    BT.addRightChild("C", 0);  // index 2
+    BT.addLeftChild("D", 1);   // index 3
+    BT.addRightChild("E", 1);  // index 4
+    BT.addLeftChild("J", 2);   // index 5
+    BT.addRightChild("K", 2);  // index 6
+    BT.addLeftChild("F", 4);   // index 9 (con trái của E)
+    BT.addRightChild("G", 4);  // index 10
+    BT.addLeftChild("H", 5);   // index 11
+    BT.addRightChild("O", 6);  // index 14 (gần đúng yêu cầu O leaf)
+    // để đảm bảo index 23 (L)
+    BT.addLeftChild("I", 11);  // index 23
+    BT.setNodeData("L", 23);   // gán L vào index 23
 
     // End of the question    
     
