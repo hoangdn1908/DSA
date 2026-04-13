@@ -97,7 +97,6 @@ public class ArrayBTree<T> {
   // the node which has no children.
   public boolean isLeaf(int nodeIndex) {
     boolean leaf = true;
-
     // QUESTION 9
     // Write java code to implement this method
 
