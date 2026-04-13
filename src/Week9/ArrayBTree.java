@@ -99,23 +99,31 @@ public class ArrayBTree<T> {
     boolean leaf = true;
     // QUESTION 9
     // Write java code to implement this method
-
-    
+    if(nodeIndex >= maxSize || data[nodeIndex] == null)
+    {
+      leaf = false;
+      return leaf;
+    }
+    int left = getLeftChild(nodeIndex);
+    int right = getRightChild(nodeIndex);
+    if ((left < maxSize && data[left] != null) ||
+            (right < maxSize && data[right] != null)) {
+      leaf = false;
+    }
     // End of the method
-
     return leaf;
   }
 
   // Returns the total number of leaves in the tree
   public int countLeaves() {
     int count = 0;
-
     // QUESTION 10
     // Write java code to implement this method
-
-    
+    for(int i = 0; i < this.length; i++)
+    {
+      if(isLeaf(i)) count++;
+    }
     // End of the method
-
     return count;
   }
   
@@ -123,13 +131,14 @@ public class ArrayBTree<T> {
   // is the distance from this node to the root of the tree.
   public int getLevel(int nodeIndex) {
     int level = 0;
-
     // QUESTION 11
     // Write java code to implement this method
-        
-
+    while(nodeIndex > 0)
+    {
+      nodeIndex = getParent(nodeIndex);
+      level++;
+    }
     // End of the method
-    
     return level;
   }
 
@@ -137,13 +146,18 @@ public class ArrayBTree<T> {
   // of the tree.
   public int getDepth() {
     int depth = 0;
-
     // QUESTION 12
     // Write java code to implement this method
-
-    
+    for(int i = 0; i < length;i++)
+    {
+      if(data[i] != null && isLeaf(i)) {
+        int level = getLevel(i);
+        if (level > depth) {
+          depth = level;
+        }
+      }
+    }
     // End of the method
-
     return depth;
   }
 
@@ -152,8 +166,10 @@ public class ArrayBTree<T> {
   public void inOrderTraversal(int nodeIndex) {
     // QUESTION 13
     // Write java code to implement this method
-
-
+    if(nodeIndex >= maxSize || data[nodeIndex] == null) return;
+    inOrderTraversal(getLeftChild(nodeIndex));
+    System.out.print(data[nodeIndex] + " ");
+    inOrderTraversal(getRightChild(nodeIndex));
     // End of the method    
   }
 
@@ -162,8 +178,10 @@ public class ArrayBTree<T> {
   public void postOrderTraversal(int nodeIndex) {
     // QUESTION 14
     // Write java code to implement this method
-    
-
+    if(nodeIndex >= maxSize || data[nodeIndex] == null) return;
+    postOrderTraversal(getLeftChild(nodeIndex));
+    postOrderTraversal(getRightChild(nodeIndex));
+    System.out.print(data[nodeIndex] + " ");
     // End of the method    
     
   }
@@ -173,10 +191,12 @@ public class ArrayBTree<T> {
   public int search(T nodeData) {
     // QUESTION 15
     // Write java code to implement this method
-
-    
+    if(nodeData == null) return -1;
+    for(int i = 0 ; i < length; i++)
+    {
+      if(data[i] != null && nodeData.equals(data[i])) return i;
+    }
     // End of the method
-    
     return -1;
   }
 }

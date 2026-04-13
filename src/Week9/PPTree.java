@@ -199,8 +199,10 @@ public class PPTree<T> {
     // Write java code to implement this method
     for(int i = 0; i < this.length;i++)
     {
-       int level = getLevel(i);
-       if(level > depth) depth = level;
+      if(isLeaf(i)) {
+        int level = getLevel(i);
+        if (level > depth) depth = level;
+      }
     }
     // End of the method
     return depth;
