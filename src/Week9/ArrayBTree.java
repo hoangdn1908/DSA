@@ -44,7 +44,8 @@ public class ArrayBTree<T> {
   // Returns the left child of current node
   public int getLeftChild(int nodeIndex) {
     return 2 * nodeIndex + 1;
-  }
+  } // 2 x nodeindẽ + 1 = nodecon
+  // indexnodecon - 1 / 2 = nodeindex
 
   // Returns the right child of current node
   public int getRightChild(int nodeIndex) {

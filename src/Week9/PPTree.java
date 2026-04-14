@@ -134,6 +134,7 @@ public class PPTree<T> {
   // Returns the degree of a node in the tree. The degree of a
   // node is the numbers of its children.
   public int getDegree(int nodeIndex) {
+    if(nodeIndex < 0 || nodeIndex >= this.length) return -1;
     int degree = 0;
     // QUESTION 2
     // Write java code to implement this method
